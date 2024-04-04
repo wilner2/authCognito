@@ -6,7 +6,7 @@ import { Authentication } from "@/domain/contracts/authentication";
 export class SignUpController {
   constructor(private authentication: Authentication) {}
   async handle(request: HTTPRequest): Promise<HTTPResponse> {
-    const requiredParams = ["email", "password"];
+    const requiredParams = ["email", "password", "userName"];
     for (const field of requiredParams) {
       if (!request.body[field]) {
         return HTTPBadRequest(new ParamsIsMissing(field));

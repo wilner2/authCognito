@@ -7,6 +7,7 @@ export class CreateUser implements Authentication {
   async execute(dataCreateUser: {
     email: string;
     password: string;
+    userName: string;
   }): Promise<any> {
     return await this.gwCreateUser.create(dataCreateUser);
   }
