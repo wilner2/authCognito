@@ -17,9 +17,12 @@ export class CreateUser implements Authentication {
       password: dataCreateUser.password,
     });
 
-    this.crypto.createHmac("sha256", process.env.Secret);
-    this.crypto.updateHasher(`${user.userName}${process.env.ClientId}`);
-    this.crypto.digest("base64");
+    const hasher = this.crypto.createHmac("sha256", process.env.Secret);
+    const hasherUpdate = this.crypto.updateHasher(
+      `${user.userName}${process.env.ClientId}`,
+      hasher
+    );
+    const secretHash = this.crypto.digest("base64", hasherUpdate);
     return user;
   }
 }
