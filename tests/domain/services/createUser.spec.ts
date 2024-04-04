@@ -18,6 +18,7 @@ describe("CreateUser Service", () => {
 
   test("should return user created", async () => {
     const user = await sut.execute({
+      userName: "any_userName",
       email: "test@example.com",
       password: "any_password",
     });

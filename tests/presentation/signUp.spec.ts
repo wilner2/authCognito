@@ -19,6 +19,7 @@ describe("signUp Controller", () => {
       body: {
         password: "any_password",
         confirmPassword: "any_password",
+        userName: "any_userName",
       },
     };
 
@@ -26,12 +27,26 @@ describe("signUp Controller", () => {
     expect(response.statusCode).toBe(400);
     expect(response.body).toEqual(new ParamsIsMissing("email"));
   });
+  test("should return 400 if no userName is provided", async () => {
+    const request = {
+      body: {
+        password: "any_password",
+        confirmPassword: "any_password",
+        email: "any_email@email.com",
+      },
+    };
+
+    const response = await sut.handle(request);
+    expect(response.statusCode).toBe(400);
+    expect(response.body).toEqual(new ParamsIsMissing("userName"));
+  });
 
   test("should return 400 if no password is provided", async () => {
     const request = {
       body: {
         email: "any_email@email.com",
         confirmPassword: "any_password",
+        userName: "any_userName",
       },
     };
 
@@ -44,6 +59,7 @@ describe("signUp Controller", () => {
     const request = {
       body: {
         email: "any_email@email.com",
+        userName: "any_userName",
         password: "any_password",
         confirmPassword: "any_password",
       },
@@ -62,6 +78,7 @@ describe("signUp Controller", () => {
       body: {
         email: "any_email@email.com",
         password: "any_password",
+        userName: "any_userName",
         confirmPassword: "any_password",
       },
     };
