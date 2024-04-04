@@ -6,9 +6,12 @@ export class CreateUser implements GWCreateUser {
   async create(dataCreateUser: {
     email: string;
     password: string;
+    userName: string;
   }): Promise<{ userID: string }> {
-    this.crypto.createHmac("256", process.env.Secret);
-    console.log(dataCreateUser);
+    this.crypto.createHmac("sha256", process.env.Secret);
+    this.crypto.updateHasher(
+      `${dataCreateUser.userName}${process.env.ClientId}`
+    );
 
     return;
   }
