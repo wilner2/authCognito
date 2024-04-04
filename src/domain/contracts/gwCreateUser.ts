@@ -1,6 +1,5 @@
+import { User } from "../entities/user";
+
 export interface GWCreateUser {
-  create(dataCreateUser: {
-    email: string;
-    password: string;
-  }): Promise<{ userID: string }>;
+  create(user: User): Promise<{ userID: string }>;
 }

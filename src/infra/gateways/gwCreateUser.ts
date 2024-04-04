@@ -7,12 +7,5 @@ export class CreateUser implements GWCreateUser {
     email: string;
     password: string;
     userName: string;
-  }): Promise<{ userID: string }> {
-    this.crypto.createHmac("sha256", process.env.Secret);
-    this.crypto.updateHasher(
-      `${dataCreateUser.userName}${process.env.ClientId}`
-    );
-
-    return;
-  }
+  }): Promise<{ userID: string }> {}
 }
