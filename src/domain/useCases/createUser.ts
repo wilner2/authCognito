@@ -10,7 +10,7 @@ export class CreateUser implements Authentication {
     email: string;
     password: string;
     userName: string;
-  }): Promise<any> {
+  }): Promise<User> {
     const user = User.create({
       email: dataCreateUser.email,
       userName: dataCreateUser.userName,
