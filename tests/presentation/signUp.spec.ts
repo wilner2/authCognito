@@ -1,4 +1,4 @@
-import { SignUpController } from "@/presentation/signUp";
+import { SignUpController } from "@/presentation/controllers/signUp";
 import { ParamsIsMissing } from "@/presentation/helpers/excepetions";
 import { MockProxy, mock } from "jest-mock-extended";
 import { Authentication } from "@/domain/contracts/authentication";
