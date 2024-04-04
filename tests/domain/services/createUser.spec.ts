@@ -21,6 +21,7 @@ describe("CreateUser Service", () => {
     encryptStub = mock<Encrypt>();
     encryptStub.createHmac.mockReturnValue("any_hash");
     encryptStub.updateHasher.mockReturnValue("any_updateHasher");
+    encryptStub.digest.mockReturnValue("any_updateHasher");
     process.env = { Secret: "any_secret", ClientId: "any_clientId" };
   });
   beforeEach(() => {
@@ -32,7 +33,7 @@ describe("CreateUser Service", () => {
     expect(user).toEqual(dataCreateUser);
   });
 
-  test("should call createHmac corretly", () => {
+  test("should call createHmac function corretly", () => {
     sut.execute(dataCreateUser);
 
     expect(encryptStub.createHmac).toHaveBeenCalledTimes(1);
@@ -42,12 +43,19 @@ describe("CreateUser Service", () => {
     );
   });
 
-  test("should call updateHasher corretly", () => {
+  test("should call updateHasher function corretly", () => {
     sut.execute(dataCreateUser);
 
     expect(encryptStub.updateHasher).toHaveBeenCalledTimes(1);
     expect(encryptStub.updateHasher).toHaveBeenCalledWith(
       `${dataCreateUser.userName}${process.env.ClientId}`
     );
+  });
+
+  test("should call digest function corretly", () => {
+    sut.execute(dataCreateUser);
+
+    expect(encryptStub.digest).toHaveBeenCalledTimes(1);
+    expect(encryptStub.digest).toHaveBeenCalledWith("base64");
   });
 });
