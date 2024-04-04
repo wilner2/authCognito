@@ -62,4 +62,10 @@ describe("CreateUser Service", () => {
       "any_secretHash"
     );
   });
+
+  test("should return a user created", async () => {
+    const result = await sut.execute(dataCreateUser);
+
+    expect(result).toEqual(dataCreateUser);
+  });
 });
