@@ -1,6 +1,6 @@
 import { HTTPRequest, HTTPResponse } from "./interfaces/http";
 import { ParamsIsMissing } from "./helpers/excepetions";
-import { HTTPBadRequest } from "./helpers/httpCode";
+import { HTTPBadRequest, OK } from "./helpers/httpCode";
 
 export class SignUpController {
   handle(request: HTTPRequest): HTTPResponse {
@@ -10,5 +10,6 @@ export class SignUpController {
         return HTTPBadRequest(new ParamsIsMissing(field));
       }
     }
+    return OK(`User ${request.body.email} created successfully`);
   }
 }
