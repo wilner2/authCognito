@@ -1,6 +1,6 @@
-import { HTTPRequest, HTTPResponse } from "./interfaces/http";
-import { ParamsIsMissing } from "./helpers/excepetions";
-import { HTTPBadRequest, HTTPInternalError, OK } from "./helpers/httpCode";
+import { HTTPRequest, HTTPResponse } from "../interfaces/http";
+import { ParamsIsMissing } from "../helpers/excepetions";
+import { HTTPBadRequest, HTTPInternalError, OK } from "../helpers/httpCode";
 import { Authentication } from "@/domain/contracts/authentication";
 
 export class SignUpController {

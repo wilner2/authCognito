@@ -6,6 +6,7 @@
     "esModuleInterop": true,
     "sourceMap": true,
     "rootDirs": ["src", "tests"],
+    "noImplicitAny": false,
     "baseUrl": "src",
     "paths": {
       "@/tests/*": ["../tests/*"],
