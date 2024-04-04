@@ -1,5 +1,5 @@
 export interface GWCreateUser {
-  create(data: {
+  create(dataCreateUser: {
     email: string;
     password: string;
   }): Promise<{ userID: string }>;

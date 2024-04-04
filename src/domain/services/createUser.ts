@@ -8,7 +8,6 @@ export class CreateUser implements Authentication {
     email: string;
     password: string;
   }): Promise<any> {
-    const user = await this.gwCreateUser.create(dataCreateUser);
-    return user;
+    return await this.gwCreateUser.create(dataCreateUser);
   }
 }
