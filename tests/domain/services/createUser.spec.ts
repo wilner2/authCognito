@@ -18,7 +18,11 @@ describe("CreateUser Service", () => {
     gwCreateUserStub.create.mockResolvedValue(dataCreateUser);
     encryptStub = mock<Encrypt>();
     encryptStub.digest.mockReturnValue("any_secretHash");
-    process.env = { Secret: "any_secret", ClientId: "any_clientId" };
+    process.env = {
+      Secret: "any_secret",
+      ClientId: "any_clientId",
+      Region: "any_region",
+    };
   });
   beforeEach(() => {
     sut = new CreateUser(gwCreateUserStub, encryptStub);
@@ -57,7 +61,9 @@ describe("CreateUser Service", () => {
     expect(gwCreateUserStub.create).toHaveBeenCalledTimes(1);
     expect(gwCreateUserStub.create).toHaveBeenCalledWith(
       dataCreateUser,
-      "any_secretHash"
+      "any_secretHash",
+      "any_clientId",
+      "any_region"
     );
   });
 
