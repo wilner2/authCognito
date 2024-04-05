@@ -1,11 +1,10 @@
-import { Encrypt } from "@/domain/contracts/crypto";
 import { GWCreateUser } from "@/domain/contracts/gwCreateUser";
+import { User } from "@/domain/entities/user";
 
-export class CreateUser implements GWCreateUser {
-  constructor(private crypto: Encrypt) {}
-  async create(dataCreateUser: {
-    email: string;
-    password: string;
-    userName: string;
-  }): Promise<{ userID: string }> {}
+export class GwCreateUserCognito implements GWCreateUser {
+  async create(user: User, secret: string): Promise<User> {
+    console.log(secret);
+
+    return Promise.resolve(user).then((user) => user);
+  }
 }
