@@ -23,7 +23,12 @@ export class CreateUser implements Authentication {
       hasher
     );
     const secretHash = this.crypto.digest("base64", hasherUpdate);
-    await this.gwCreateUser.create(user, secretHash);
+    await this.gwCreateUser.create(
+      user,
+      secretHash,
+      process.env.ClientId,
+      process.env.Region
+    );
     return user;
   }
 }
