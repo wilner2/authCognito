@@ -15,9 +15,7 @@ describe("CreateUser Service", () => {
 
   beforeAll(() => {
     gwCreateUserStub = mock<GWCreateUser>();
-    gwCreateUserStub.create.mockResolvedValue({
-      userID: "any_userID",
-    });
+    gwCreateUserStub.create.mockResolvedValue(dataCreateUser);
     encryptStub = mock<Encrypt>();
     encryptStub.digest.mockReturnValue("any_secretHash");
     process.env = { Secret: "any_secret", ClientId: "any_clientId" };
