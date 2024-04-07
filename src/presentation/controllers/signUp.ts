@@ -1,21 +1,21 @@
-import { HTTPRequest, HTTPResponse } from "../interfaces/http";
+import { HTTPResponse } from "../interfaces/http";
 import { ParamsIsMissing } from "../helpers/excepetions";
 import { HTTPBadRequest, HTTPInternalError, OK } from "../helpers/httpCode";
 import { Authentication } from "@/domain/contracts/authentication";
 
 export class SignUpController {
   constructor(private authentication: Authentication) {}
-  async handle(request: HTTPRequest): Promise<HTTPResponse> {
+  async handle(request: any): Promise<HTTPResponse> {
     const requiredParams = ["email", "password", "userName"];
     for (const field of requiredParams) {
-      if (!request.body[field]) {
+      if (!request[field]) {
         return HTTPBadRequest(new ParamsIsMissing(field));
       }
     }
     try {
-      await this.authentication.execute(request.body);
+      await this.authentication.execute(request);
 
-      return OK(`User ${request.body.email} created successfully`);
+      return OK(`User ${request.email} created successfully`);
     } catch (error) {
       return HTTPInternalError(error);
     }
