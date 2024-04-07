@@ -1,9 +1,6 @@
 import { User } from "@/domain/entities/user";
 import { GwCreateUserCognito } from "@/infra/gateways/gwCreateUser";
-import {
-  CognitoIdentityProviderClient,
-  SignUpCommand,
-} from "@aws-sdk/client-cognito-identity-provider";
+import { CognitoIdentityProviderClient } from "@aws-sdk/client-cognito-identity-provider";
 
 describe("GWCreateUser", () => {
   let gwCreateUserCognito: GwCreateUserCognito;
